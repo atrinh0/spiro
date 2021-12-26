@@ -8,13 +8,13 @@ import PackageDescription
 import AppleProductTypes
 
 let package = Package(
-    name: "My App",
+    name: "Spiro",
     platforms: [
         .iOS("15.2")
     ],
     products: [
         .iOSApplication(
-            name: "My App",
+            name: "Spiro",
             targets: ["AppModule"],
             bundleIdentifier: "com.atrinh.playgroundtest",
             teamIdentifier: "6DRH5697SN",
