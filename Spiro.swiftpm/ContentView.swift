@@ -5,8 +5,8 @@ struct ContentView: View {
     @State private var outerRadius = 75.0
     @State private var distance = 25.0
     @State private var amount = 1.0
-    @State private var hue = 0.6
-    @State private var lineWidth = 1.0
+    @State private var hue = 0.0
+    @State private var lineWidth = 2.0
     @State private var animate = false
     
     var body: some View {
@@ -57,5 +57,6 @@ struct ContentView: View {
                     .padding(.horizontal)
             }
         }
+        .background(Color.black)
     }
 }
