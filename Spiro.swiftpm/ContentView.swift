@@ -5,34 +5,44 @@ struct ContentView: View {
     @State private var outerRadius = 70.0
 
     @State private var amount = 1.0
-    @State private var hue = 0.0
     @State private var lineWidth = 2.0
 
     @State private var distance = 25.0
     @State private var distanceIncrementing = false
     @State private var animateDistance = true
 
-    @State private var animate = false
+    @State private var rotation = 0.0
+    @State private var animateRotation = true
 
     @State private var showingOptions = true
 
+    @State private var hue = 0.0
+    @State private var hueIncrementing = true
+    @State private var animateHue = false
+
+    @State private var color = Color.white
+
+    @State private var scale = 1.0
+
     let timer = Timer.publish(every: 0.01, on: .main, in: .common).autoconnect()
+
+    var graphColor: Color {
+        animateHue ? Color(hue: hue, saturation: 1, brightness: 1) : color
+    }
     
     var body: some View {
         ZStack {
             GeometryReader { geo in
                 ZStack {
                     Spirograph(innerRadius: Int(innerRadius), outerRadius: Int(outerRadius), distance: Int(distance), amount: amount)
-                        .stroke(Color(hue: hue, saturation: 1, brightness: 1), lineWidth: lineWidth)
-                        .frame(width: geo.size.width, height: geo.size.height)
+                        .stroke(graphColor, lineWidth: lineWidth)
                         .blur(radius: 3)
 
                     Spirograph(innerRadius: Int(innerRadius), outerRadius: Int(outerRadius), distance: Int(distance), amount: amount)
-                        .stroke(Color(hue: hue, saturation: 1, brightness: 1), lineWidth: lineWidth)
-                        .frame(width: geo.size.width, height: geo.size.height)
+                        .stroke(graphColor, lineWidth: lineWidth)
                 }
-                .rotationEffect(.degrees(animate ? 0 : 360))
-                .animation(.linear(duration: 30).repeatForever(autoreverses: false), value: animate)
+                .scaleEffect(scale)
+                .rotationEffect(.degrees(rotation))
             }
             VStack {
                 if showingOptions {
@@ -86,6 +96,35 @@ struct ContentView: View {
                                 Slider(value: $lineWidth, in: 0.1...10, step: 0.1)
                             }
                             .paddedStack()
+                            VStack {
+                                Toggle("Animate Rotation", isOn: $animateRotation.animation())
+                                    .tint(.init(white: 0.75))
+                                .font(.body.bold())
+                            }
+                            .paddedStack()
+                            VStack {
+                                Toggle("Animate Color", isOn: $animateHue.animation())
+                                    .tint(.init(white: 0.75))
+                                .font(.body.bold())
+                            }
+                            .paddedStack()
+                            if !animateHue {
+                                VStack {
+                                    ColorPicker("Color", selection: $color)
+                                        .font(Font.body.bold())
+                                }
+                                .paddedStack()
+                            }
+                            VStack {
+                                HStack {
+                                    Text("Scale")
+                                    Spacer()
+                                    Text("\(scale, format: .number.precision(.fractionLength(1)))")
+                                }
+                                .font(.body.bold())
+                                Slider(value: $scale, in: 0.1...5, step: 0.1)
+                            }
+                            .paddedStack()
                         }
                         .padding(.vertical)
                     }
@@ -115,7 +154,7 @@ struct ContentView: View {
         }
         .background(Color.black)
         .onAppear {
-            animate = true
+            animateRotation = true
         }
         .onReceive(timer) { _ in
             if animateDistance {
@@ -133,16 +172,29 @@ struct ContentView: View {
                     }
                 }
             }
+
+            if animateHue {
+                if hueIncrementing {
+                    hue += 0.001
+                    if hue > 1 {
+                        hue = 1
+                        hueIncrementing = false
+                    }
+                } else {
+                    hue -= 0.001
+                    if hue < 0 {
+                        hue = 0
+                        hueIncrementing = true
+                    }
+                }
+            }
+
+            if animateRotation {
+                rotation += 0.2
+                if rotation > 360 {
+                    rotation = 0
+                }
+            }
         }
-
-        //                Text("Line width: \(lineWidth, format: .number.precision(.fractionLength(2)))")
-        //                Slider(value: $lineWidth, in: 0.1...10, step: 0.1)
-        //                    .padding([.horizontal, .bottom])
-
-        //                Text("Color")
-        //                Slider(value: $hue)
-        //                    .padding(.horizontal)
-        //            }
-
     }
 }
