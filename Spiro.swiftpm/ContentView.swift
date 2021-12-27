@@ -14,13 +14,13 @@ struct ContentView: View {
     @State private var rotation = 0.0
     @State private var animateRotation = true
 
-    @State private var showingOptions = true
+    @State private var showingOptions = false
 
     @State private var hue = 0.0
     @State private var hueIncrementing = true
     @State private var animateHue = false
 
-    @State private var color = Color.white
+    @State private var color = Color(hue: 0, saturation: 1, brightness: 1)
 
     @State private var scale = 1.0
 
@@ -123,6 +123,23 @@ struct ContentView: View {
                                 }
                                 .font(.body.bold())
                                 Slider(value: $scale, in: 0.1...5, step: 0.1)
+                            }
+                            .paddedStack()
+                            VStack {
+                                HStack {
+                                    Text("Source")
+                                    Spacer()
+                                    Button {
+                                        if let url = URL(string: "https://www.hackingwithswift.com/books/ios-swiftui/creating-a-spirograph-with-swiftui"),
+                                           UIApplication.shared.canOpenURL(url) {
+                                            UIApplication.shared.open(url, options: [:])
+                                        }
+                                    } label: {
+                                        Image(systemName: "chevron.left.forwardslash.chevron.right")
+                                            .foregroundColor(.white)
+                                    }
+                                }
+                                .font(.body.bold())
                             }
                             .paddedStack()
                         }
