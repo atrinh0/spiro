@@ -5,7 +5,7 @@ struct ContentView: View {
     @State private var outerRadius = 70.0
 
     @State private var amount = 1.0
-    @State private var lineWidth = 2.0
+    @State private var lineWidth = 1.5
 
     @State private var distance = 25.0
     @State private var distanceIncrementing = false
@@ -20,13 +20,13 @@ struct ContentView: View {
     @State private var hueIncrementing = true
     @State private var animateHue = false
 
-    @State private var color = Color(hue: 0, saturation: 1, brightness: 1)
+    @State private var color = Color.white
 
     @State private var scale = 1.0
 
     let timer = Timer.publish(every: 0.01, on: .main, in: .common).autoconnect()
 
-    var graphColor: Color {
+    private var graphColor: Color {
         animateHue ? Color(hue: hue, saturation: 1, brightness: 1) : color
     }
     
@@ -45,6 +45,7 @@ struct ContentView: View {
                 .rotationEffect(.degrees(rotation))
             }
             VStack {
+                Spacer()
                 if showingOptions {
                     ScrollView {
                         VStack {
@@ -143,10 +144,8 @@ struct ContentView: View {
                             }
                             .paddedStack()
                         }
-                        .padding(.vertical)
+                        .padding(.top)
                     }
-                } else {
-                    Spacer()
                 }
                 Button {
                     withAnimation {
@@ -166,12 +165,18 @@ struct ContentView: View {
                             .animation(Animation.spring(response: 0.35, dampingFraction: 0.35, blendDuration: 1), value: showingOptions)
                     }
                     .font(.title.bold())
+                    .padding()
                 }
             }
         }
         .background(Color.black)
         .onAppear {
             animateRotation = true
+        }
+        .onTapGesture {
+            withAnimation {
+                showingOptions = true
+            }
         }
         .onReceive(timer) { _ in
             if animateDistance {
