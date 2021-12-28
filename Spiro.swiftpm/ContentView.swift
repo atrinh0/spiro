@@ -10,9 +10,12 @@ struct ContentView: View {
     @State private var distance = 25.0
     @State private var distanceIncrementing = false
     @State private var animateDistance = true
+    @State private var animateDistanceSpeed = 0.5
+    @State private var minimumDistance = 1.0
 
     @State private var rotation = 0.0
     @State private var animateRotation = true
+    @State private var rotationAmount = 0.2
 
     @State private var showingOptions = false
 
@@ -49,43 +52,66 @@ struct ContentView: View {
                 if showingOptions {
                     ScrollView {
                         VStack {
-                            VStack {
-                                HStack {
-                                    Text("Inner Radius")
-                                    Spacer()
-                                    Text("\(Int(innerRadius))")
-                                }
-                                .font(.body.bold())
-                                Slider(value: $innerRadius, in: 1...150, step: 1)
-                            }
-                            .paddedStack()
-                            VStack {
-                                HStack {
-                                    Text("Outer Radius")
-                                    Spacer()
-                                    Text("\(Int(outerRadius))")
-                                }
-                                .font(.body.bold())
-                                Slider(value: $outerRadius, in: 1...150, step: 1)
-                            }
-                            .paddedStack()
-                            VStack {
-                                Toggle("Animate Distance", isOn: $animateDistance.animation())
-                                    .tint(.init(white: 0.75))
-                                .font(.body.bold())
-                            }
-                            .paddedStack()
-                            if !animateDistance {
+                            Group {
                                 VStack {
                                     HStack {
-                                        Text("Distance")
+                                        Text("Inner Radius")
                                         Spacer()
-                                        Text("\(Int(distance))")
+                                        Text("\(Int(innerRadius))")
                                     }
                                     .font(.body.bold())
-                                    Slider(value: $distance, in: 1...150, step: 1)
+                                    Slider(value: $innerRadius, in: 1...150, step: 1)
                                 }
                                 .paddedStack()
+                                VStack {
+                                    HStack {
+                                        Text("Outer Radius")
+                                        Spacer()
+                                        Text("\(Int(outerRadius))")
+                                    }
+                                    .font(.body.bold())
+                                    Slider(value: $outerRadius, in: 1...150, step: 1)
+                                }
+                                .paddedStack()
+                                VStack {
+                                    Toggle("Animate Distance", isOn: $animateDistance.animation())
+                                        .tint(.init(white: 0.75))
+                                        .font(.body.bold())
+                                }
+                                .paddedStack()
+                                if !animateDistance {
+                                    VStack {
+                                        HStack {
+                                            Text("Distance")
+                                            Spacer()
+                                            Text("\(Int(distance))")
+                                        }
+                                        .font(.body.bold())
+                                        Slider(value: $distance, in: 1...150, step: 1)
+                                    }
+                                    .paddedStack()
+                                } else {
+                                    VStack {
+                                        HStack {
+                                            Text("Distance Animation Speed")
+                                            Spacer()
+                                            Text("\(animateDistanceSpeed, format: .number.precision(.fractionLength(1)))")
+                                        }
+                                        .font(.body.bold())
+                                        Slider(value: $animateDistanceSpeed, in: 0.2...5.0, step: 0.1)
+                                    }
+                                    .paddedStack()
+                                    VStack {
+                                        HStack {
+                                            Text("Distance Animation Minimum Value")
+                                            Spacer()
+                                            Text("\(Int(minimumDistance))")
+                                        }
+                                        .font(.body.bold())
+                                        Slider(value: $minimumDistance, in: 1...149, step: 1)
+                                    }
+                                    .paddedStack()
+                                }
                             }
                             VStack {
                                 HStack {
@@ -103,6 +129,18 @@ struct ContentView: View {
                                 .font(.body.bold())
                             }
                             .paddedStack()
+                            if animateRotation {
+                                VStack {
+                                    HStack {
+                                        Text("Rotation Amount")
+                                        Spacer()
+                                        Text("\(rotationAmount, format: .number.precision(.fractionLength(2)))")
+                                    }
+                                    .font(.body.bold())
+                                    Slider(value: $rotationAmount, in: -2.5...2.5, step: 0.01)
+                                }
+                                .paddedStack()
+                            }
                             VStack {
                                 Toggle("Animate Color", isOn: $animateHue.animation())
                                     .tint(.init(white: 0.75))
@@ -181,15 +219,15 @@ struct ContentView: View {
         .onReceive(timer) { _ in
             if animateDistance {
                 if distanceIncrementing {
-                    distance += 0.5
+                    distance += animateDistanceSpeed
                     if distance > 150 {
                         distance = 150
                         distanceIncrementing = false
                     }
                 } else {
-                    distance -= 0.5
-                    if distance < 1 {
-                        distance = 1
+                    distance -= animateDistanceSpeed
+                    if distance < minimumDistance {
+                        distance = minimumDistance
                         distanceIncrementing = true
                     }
                 }
@@ -212,8 +250,10 @@ struct ContentView: View {
             }
 
             if animateRotation {
-                rotation += 0.2
+                rotation += rotationAmount
                 if rotation > 360 {
+                    rotation = 0
+                } else if rotation < -360 {
                     rotation = 0
                 }
             }
