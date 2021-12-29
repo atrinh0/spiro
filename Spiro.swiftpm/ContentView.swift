@@ -33,6 +33,34 @@ struct ContentView: View {
         animateHue ? Color(hue: hue, saturation: 1, brightness: 1) : color
     }
     
+    private func setDefault() {
+        innerRadius = 125.0
+        outerRadius = 70.0
+        
+        amount = 1.0
+        lineWidth = 1.5
+        
+        distance = 25.0
+        distanceIncrementing = false
+        animateDistance = true
+        animateDistanceSpeed = 0.5
+        minimumDistance = 1.0
+        
+        rotation = 0.0
+        animateRotation = true
+        rotationAmount = 0.2
+        
+        showingOptions = false
+        
+        hue = 0.0
+        hueIncrementing = true
+        animateHue = false
+        
+        color = Color.white
+        
+        scale = 1.0
+    }
+    
     var body: some View {
         ZStack {
             GeometryReader { geo in
@@ -73,6 +101,7 @@ struct ContentView: View {
                                     Slider(value: $outerRadius, in: 1...150, step: 1)
                                 }
                                 .paddedStack()
+                                .padding(.bottom)
                                 VStack {
                                     Toggle("Animate Distance", isOn: $animateDistance.animation())
                                         .tint(.init(white: 0.75))
@@ -123,6 +152,7 @@ struct ContentView: View {
                                 Slider(value: $lineWidth, in: 0.1...10, step: 0.1)
                             }
                             .paddedStack()
+                            .padding(.vertical)
                             VStack {
                                 Toggle("Animate Rotation", isOn: $animateRotation.animation())
                                     .tint(.init(white: 0.75))
@@ -147,6 +177,7 @@ struct ContentView: View {
                                 .font(.body.bold())
                             }
                             .paddedStack()
+                            .padding(.top)
                             if !animateHue {
                                 VStack {
                                     ColorPicker("Color", selection: $color)
@@ -164,46 +195,67 @@ struct ContentView: View {
                                 Slider(value: $scale, in: 0.1...5, step: 0.1)
                             }
                             .paddedStack()
-                            VStack {
-                                HStack {
-                                    Text("Source")
-                                    Spacer()
-                                    Button {
-                                        if let url = URL(string: "https://www.hackingwithswift.com/books/ios-swiftui/creating-a-spirograph-with-swiftui"),
-                                           UIApplication.shared.canOpenURL(url) {
-                                            UIApplication.shared.open(url, options: [:])
-                                        }
-                                    } label: {
-                                        Image(systemName: "chevron.left.forwardslash.chevron.right")
-                                            .foregroundColor(.white)
-                                    }
-                                }
-                                .font(.body.bold())
-                            }
-                            .paddedStack()
+                            .padding(.top)
                         }
                         .padding(.top)
                     }
                 }
-                Button {
-                    withAnimation {
-                        showingOptions.toggle()
+                HStack {
+                    Menu {
+                        Button {
+                            withAnimation {
+                                setDefault()
+                            }
+                        } label: {
+                            Text("Simple Spirograph")
+                        }
+                    } label: {
+                        ZStack {
+                            Image(systemName: "seal")
+                                .foregroundColor(showingOptions ? .white : .white.opacity(0))
+                                .scaleEffect(showingOptions ? 1 : 0.1)
+                                .offset(x: showingOptions ? 0 : 50, y: 0)
+                                .animation(Animation.spring(response: 0.35, dampingFraction: 0.35, blendDuration: 1).delay(showingOptions ? 0.1 : 0), value: showingOptions)
+                        }
+                        .font(.title.bold())
+                        .padding()
                     }
-                } label: {
-                    ZStack {
-                        Image(systemName: "chevron.up")
-                            .foregroundColor(showingOptions ? .white.opacity(0) : .white.opacity(0.25))
-                            .offset(x: 0, y: showingOptions ? -50 : 0)
-                            .animation(showingOptions ? .easeOut :
-                                       Animation.spring(response: 0.35, dampingFraction: 0.35, blendDuration: 1), value: showingOptions)
-                        Image(systemName: "xmark")
-                            .foregroundColor(showingOptions ? .white : .white.opacity(0))
-                            .rotationEffect(.degrees(showingOptions ? 0 : 180))
-                            .scaleEffect(showingOptions ? 1 : 0.1)
-                            .animation(Animation.spring(response: 0.35, dampingFraction: 0.35, blendDuration: 1), value: showingOptions)
+                    Button {
+                        withAnimation {
+                            showingOptions.toggle()
+                        }
+                    } label: {
+                        ZStack {
+                            Image(systemName: "chevron.up")
+                                .foregroundColor(showingOptions ? .white.opacity(0) : .white.opacity(0.25))
+                                .offset(x: 0, y: showingOptions ? -50 : 0)
+                                .animation(showingOptions ? .easeOut :
+                                            Animation.spring(response: 0.35, dampingFraction: 0.35, blendDuration: 1), value: showingOptions)
+                            Image(systemName: "xmark")
+                                .foregroundColor(showingOptions ? .white : .white.opacity(0))
+                                .rotationEffect(.degrees(showingOptions ? 0 : 180))
+                                .scaleEffect(showingOptions ? 1 : 0.1)
+                                .animation(Animation.spring(response: 0.35, dampingFraction: 0.35, blendDuration: 1), value: showingOptions)
+                        }
+                        .font(.title.bold())
+                        .padding()
                     }
-                    .font(.title.bold())
-                    .padding()
+                    Button {
+                        if let url = URL(string: "https://www.hackingwithswift.com/books/ios-swiftui/creating-a-spirograph-with-swiftui"),
+                           UIApplication.shared.canOpenURL(url) {
+                            UIApplication.shared.open(url, options: [:])
+                        }
+                    } label: {
+                        ZStack {
+                            Image(systemName: "chevron.left.forwardslash.chevron.right")
+                                .foregroundColor(showingOptions ? .white : .white.opacity(0))
+                                .scaleEffect(showingOptions ? 1 : 0.1)
+                                .offset(x: showingOptions ? 0 : -50, y: 0)
+                                .animation(Animation.spring(response: 0.35, dampingFraction: 0.35, blendDuration: 1).delay(showingOptions ? 0.2 : 0), value: showingOptions)
+                        }
+                        .font(.title.bold())
+                        .padding()
+                    }
                 }
             }
         }
