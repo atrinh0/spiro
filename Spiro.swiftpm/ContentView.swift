@@ -93,7 +93,7 @@ struct ContentView: View {
                                 } else {
                                     VStack {
                                         HStack {
-                                            Text("Distance Animation Speed")
+                                            Text("Distance Animation Amount")
                                             Spacer()
                                             Text("\(animateDistanceSpeed, format: .number.precision(.fractionLength(1)))")
                                         }
