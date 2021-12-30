@@ -215,7 +215,7 @@ struct ContentView: View {
                                 .foregroundColor(showingOptions ? .white : .white.opacity(0))
                                 .scaleEffect(showingOptions ? 1 : 0.1)
                                 .offset(x: showingOptions ? 0 : 50, y: 0)
-                                .animation(Animation.spring(response: 0.35, dampingFraction: 0.35, blendDuration: 1).delay(showingOptions ? 0.1 : 0), value: showingOptions)
+                                .animation(Animation.spring(response: 0.35, dampingFraction: 0.35, blendDuration: 1).delay(showingOptions ? Double.random(in: 0.05...0.2) : 0), value: showingOptions)
                         }
                         .font(.title.bold())
                         .padding()
@@ -251,7 +251,7 @@ struct ContentView: View {
                                 .foregroundColor(showingOptions ? .white : .white.opacity(0))
                                 .scaleEffect(showingOptions ? 1 : 0.1)
                                 .offset(x: showingOptions ? 0 : -50, y: 0)
-                                .animation(Animation.spring(response: 0.35, dampingFraction: 0.35, blendDuration: 1).delay(showingOptions ? 0.2 : 0), value: showingOptions)
+                                .animation(Animation.spring(response: 0.35, dampingFraction: 0.35, blendDuration: 1).delay(showingOptions ? Double.random(in: 0.05...0.2) : 0), value: showingOptions)
                         }
                         .font(.title.bold())
                         .padding()
