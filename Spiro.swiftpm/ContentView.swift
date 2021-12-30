@@ -220,6 +220,7 @@ struct ContentView: View {
                         .font(.title.bold())
                         .padding()
                     }
+                    .allowsHitTesting(showingOptions)
                     Button {
                         withAnimation {
                             showingOptions.toggle()
@@ -256,6 +257,7 @@ struct ContentView: View {
                         .font(.title.bold())
                         .padding()
                     }
+                    .allowsHitTesting(showingOptions)
                 }
             }
         }
