@@ -61,27 +61,132 @@ struct ContentView: View {
     private func setSpikyBall() {
         innerRadius = 137.0
         outerRadius = 1.0
-
+        
         lineWidth = 0.5
-
+        
         distance = 133.0
         distanceIncrementing = false
         animateDistance = true
         animateDistanceSpeed = 0.2
         minimumDistance = 133.0
-
+        
         animateRotation = true
-        rotationAmount = -0.01
-
+        rotationAmount = -0.15
+        
         showingOptions = false
-
+        
         hue = 0.0
         hueIncrementing = true
         animateHue = false
-
+        
         color = Color.white
-
+        
         scale = 1.0
+    }
+    
+    private func setNucleus() {
+        innerRadius = 144.0
+        outerRadius = 1.0
+        
+        lineWidth = 0.1
+        
+        distance = 144.0
+        distanceIncrementing = false
+        animateDistance = true
+        animateDistanceSpeed = 0.2
+        minimumDistance = 144.0
+        
+        animateRotation = true
+        rotationAmount = 0.01
+        
+        showingOptions = false
+        
+        hue = 0.0
+        hueIncrementing = true
+        animateHue = false
+        
+        color = Color.white
+        
+        scale = 2.0
+    }
+    
+    private func setHeart() {
+        innerRadius = 65.0
+        outerRadius = 130.0
+        
+        lineWidth = 10.0
+        
+        distance = 100.0
+        distanceIncrementing = false
+        animateDistance = true
+        animateDistanceSpeed = 0.4
+        minimumDistance = 133.0
+        
+        rotation = -90
+        animateRotation = false
+        rotationAmount = 0.01
+        
+        showingOptions = false
+        
+        hue = 0.0
+        hueIncrementing = true
+        animateHue = false
+        
+        color = Color(hue: 0, saturation: 1, brightness: 1)
+        
+        scale = 1.0
+    }
+    
+    private func setStar() {
+        innerRadius = 110.0
+        outerRadius = 66.0
+        
+        lineWidth = 5.0
+        
+        distance = 100.0
+        distanceIncrementing = false
+        animateDistance = true
+        animateDistanceSpeed = 0.5
+        minimumDistance = 100.0
+        
+        animateRotation = true
+        rotationAmount = 1.0
+        
+        showingOptions = false
+        
+        hue = 0.0
+        hueIncrementing = true
+        animateHue = true
+        
+        color = Color.white
+        
+        scale = 1.0
+    }
+    
+    private func setCherryBlossom() {
+        innerRadius = 50.0
+        outerRadius = 120.0
+        
+        lineWidth = 3.0
+        
+        distance = 120.0
+        distanceIncrementing = false
+        animateDistance = false
+        animateDistanceSpeed = 0.5
+        minimumDistance = 1.0
+        
+        animateRotation = true
+        rotationAmount = 0.25
+        
+        showingOptions = false
+        
+        hue = 0.0
+        hueIncrementing = true
+        animateHue = false
+        
+        color = Color(red: 1.0, green: 183.0/255.0, blue: 197.0/255.0)
+        
+        scale = 1.5
     }
     
     var body: some View {
@@ -245,10 +350,39 @@ struct ContentView: View {
                         } label: {
                             Text("Spiky Ball")
                         }
+                        Button {
+                            withAnimation {
+                                setStar()
+                            }
+                        } label: {
+                            Text("Star")
+                        }
+                        Button {
+                            withAnimation {
+                                setNucleus()
+                            }
+                        } label: {
+                            Text("Nucleus")
+                        }
+                        Button {
+                            withAnimation {
+                                setHeart()
+                            }
+                        } label: {
+                            Text("Heart")
+                        }
+                        Button {
+                            withAnimation {
+                                setCherryBlossom()
+                            }
+                        } label: {
+                            Text("Cherry Blossom")
+                        }
                     } label: {
                         ZStack {
                             Image(systemName: "seal")
                                 .foregroundColor(showingOptions ? .white : .white.opacity(0))
+                                .rotationEffect(.degrees(rotation))
                                 .scaleEffect(showingOptions ? 1 : 0.1)
                                 .offset(x: showingOptions ? 0 : 50, y: 0)
                                 .animation(Animation.spring(response: 0.35, dampingFraction: 0.35, blendDuration: 1).delay(showingOptions ? Double.random(in: 0.05...0.2) : 0), value: showingOptions)
