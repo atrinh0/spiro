@@ -86,17 +86,23 @@ struct ContentView: View {
     
     var body: some View {
         ZStack {
-            GeometryReader { geo in
+            VStack {
                 ZStack {
                     Spirograph(innerRadius: Int(innerRadius), outerRadius: Int(outerRadius), distance: Int(distance), amount: 1.0)
                         .stroke(graphColor, lineWidth: lineWidth)
                         .blur(radius: 3)
-
+                    
                     Spirograph(innerRadius: Int(innerRadius), outerRadius: Int(outerRadius), distance: Int(distance), amount: 1.0)
                         .stroke(graphColor, lineWidth: lineWidth)
                 }
                 .scaleEffect(scale)
                 .rotationEffect(.degrees(rotation))
+            }
+            .background(Color.black)
+            .onTapGesture {
+                withAnimation {
+                    showingOptions = true
+                }
             }
             VStack {
                 Spacer()
@@ -294,11 +300,6 @@ struct ContentView: View {
         .background(Color.black)
         .onAppear {
             animateRotation = true
-        }
-        .onTapGesture {
-            withAnimation {
-                showingOptions = true
-            }
         }
         .onReceive(timer) { _ in
             if animateDistance {
