@@ -4,7 +4,6 @@ struct ContentView: View {
     @State private var innerRadius = 125.0
     @State private var outerRadius = 70.0
 
-    @State private var amount = 1.0
     @State private var lineWidth = 1.5
 
     @State private var distance = 25.0
@@ -37,7 +36,6 @@ struct ContentView: View {
         innerRadius = 125.0
         outerRadius = 70.0
         
-        amount = 1.0
         lineWidth = 1.5
         
         distance = 25.0
@@ -60,16 +58,43 @@ struct ContentView: View {
         
         scale = 1.0
     }
+
+    private func setSpikyBall() {
+        innerRadius = 137.0
+        outerRadius = 1.0
+
+        lineWidth = 0.5
+
+        distance = 133.0
+        distanceIncrementing = false
+        animateDistance = true
+        animateDistanceSpeed = 0.2
+        minimumDistance = 133.0
+
+        rotation = 0.0
+        animateRotation = true
+        rotationAmount = -0.01
+
+        showingOptions = false
+
+        hue = 0.0
+        hueIncrementing = true
+        animateHue = false
+
+        color = Color.white
+
+        scale = 1.0
+    }
     
     var body: some View {
         ZStack {
             GeometryReader { geo in
                 ZStack {
-                    Spirograph(innerRadius: Int(innerRadius), outerRadius: Int(outerRadius), distance: Int(distance), amount: amount)
+                    Spirograph(innerRadius: Int(innerRadius), outerRadius: Int(outerRadius), distance: Int(distance), amount: 1.0)
                         .stroke(graphColor, lineWidth: lineWidth)
                         .blur(radius: 3)
 
-                    Spirograph(innerRadius: Int(innerRadius), outerRadius: Int(outerRadius), distance: Int(distance), amount: amount)
+                    Spirograph(innerRadius: Int(innerRadius), outerRadius: Int(outerRadius), distance: Int(distance), amount: 1.0)
                         .stroke(graphColor, lineWidth: lineWidth)
                 }
                 .scaleEffect(scale)
@@ -208,6 +233,13 @@ struct ContentView: View {
                             }
                         } label: {
                             Text("Simple Spirograph")
+                        }
+                        Button {
+                            withAnimation {
+                                setSpikyBall()
+                            }
+                        } label: {
+                            Text("Spiky Ball")
                         }
                     } label: {
                         ZStack {
