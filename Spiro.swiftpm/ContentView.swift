@@ -43,8 +43,7 @@ struct ContentView: View {
         animateDistance = true
         animateDistanceSpeed = 0.5
         minimumDistance = 1.0
-        
-        rotation = 0.0
+
         animateRotation = true
         rotationAmount = 0.2
         
@@ -71,7 +70,6 @@ struct ContentView: View {
         animateDistanceSpeed = 0.2
         minimumDistance = 133.0
 
-        rotation = 0.0
         animateRotation = true
         rotationAmount = -0.01
 
