@@ -16,7 +16,7 @@ let package = Package(
         .iOSApplication(
             name: "Spiro",
             targets: ["AppModule"],
-            bundleIdentifier: "com.atrinh.playgroundtest",
+            bundleIdentifier: "com.atrinh.spiro",
             teamIdentifier: "6DRH5697SN",
             displayVersion: "1",
             bundleVersion: "1",
