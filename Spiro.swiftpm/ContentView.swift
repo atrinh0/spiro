@@ -64,7 +64,6 @@ struct ContentView: View {
                                         Spacer()
                                         Text("\(Int(innerRadius))")
                                     }
-                                    .font(.body.bold())
                                     Slider(value: $innerRadius, in: 1...150, step: 1)
                                 }
                                 .paddedStack()
@@ -74,7 +73,6 @@ struct ContentView: View {
                                         Spacer()
                                         Text("\(Int(outerRadius))")
                                     }
-                                    .font(.body.bold())
                                     Slider(value: $outerRadius, in: 1...150, step: 1)
                                 }
                                 .paddedStack()
@@ -82,7 +80,6 @@ struct ContentView: View {
                                 VStack {
                                     Toggle("Animate Distance", isOn: $animateDistance.animation())
                                         .tint(.init(white: 0.75))
-                                        .font(.body.bold())
                                 }
                                 .paddedStack()
                                 if !animateDistance {
@@ -92,7 +89,6 @@ struct ContentView: View {
                                             Spacer()
                                             Text("\(Int(distance))")
                                         }
-                                        .font(.body.bold())
                                         Slider(value: $distance, in: 1...150, step: 1)
                                     }
                                     .paddedStack()
@@ -103,7 +99,6 @@ struct ContentView: View {
                                             Spacer()
                                             Text("\(animateDistanceSpeed, format: .number.precision(.fractionLength(1)))")
                                         }
-                                        .font(.body.bold())
                                         Slider(value: $animateDistanceSpeed, in: 0.2...5.0, step: 0.1)
                                     }
                                     .paddedStack()
@@ -113,7 +108,6 @@ struct ContentView: View {
                                             Spacer()
                                             Text("\(Int(minimumDistance))")
                                         }
-                                        .font(.body.bold())
                                         Slider(value: $minimumDistance, in: 1...149, step: 1)
                                     }
                                     .paddedStack()
@@ -125,7 +119,6 @@ struct ContentView: View {
                                     Spacer()
                                     Text("\(lineWidth, format: .number.precision(.fractionLength(1)))")
                                 }
-                                .font(.body.bold())
                                 Slider(value: $lineWidth, in: 0.1...10, step: 0.1)
                             }
                             .paddedStack()
@@ -133,7 +126,6 @@ struct ContentView: View {
                             VStack {
                                 Toggle("Animate Rotation", isOn: $animateRotation.animation())
                                     .tint(.init(white: 0.75))
-                                .font(.body.bold())
                             }
                             .paddedStack()
                             if animateRotation {
@@ -143,7 +135,6 @@ struct ContentView: View {
                                         Spacer()
                                         Text("\(rotationAmount, format: .number.precision(.fractionLength(2)))")
                                     }
-                                    .font(.body.bold())
                                     Slider(value: $rotationAmount, in: -2.5...2.5, step: 0.01)
                                 }
                                 .paddedStack()
@@ -151,14 +142,12 @@ struct ContentView: View {
                             VStack {
                                 Toggle("Animate Color", isOn: $animateHue.animation())
                                     .tint(.init(white: 0.75))
-                                .font(.body.bold())
                             }
                             .paddedStack()
                             .padding(.top)
                             if !animateHue {
                                 VStack {
                                     ColorPicker("Color", selection: $color)
-                                        .font(Font.body.bold())
                                 }
                                 .paddedStack()
                             }
@@ -168,7 +157,6 @@ struct ContentView: View {
                                     Spacer()
                                     Text("\(scale, format: .number.precision(.fractionLength(1)))")
                                 }
-                                .font(.body.bold())
                                 Slider(value: $scale, in: 0.1...5, step: 0.1)
                             }
                             .paddedStack()
@@ -176,6 +164,7 @@ struct ContentView: View {
                         }
                         .padding(.top)
                     }
+                    .font(.body.bold())
                 }
                 HStack {
                     Menu {
