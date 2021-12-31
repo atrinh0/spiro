@@ -56,8 +56,8 @@ struct ContentView: View {
                 Spacer()
                 if showingOptions {
                     ScrollView {
-                        VStack {
-                            Group {
+                        VStack(spacing: 30) {
+                            VStack {
                                 VStack {
                                     HStack {
                                         Text("Inner Radius")
@@ -76,7 +76,8 @@ struct ContentView: View {
                                     Slider(value: $outerRadius, in: 1...150, step: 1)
                                 }
                                 .paddedStack()
-                                .padding(.bottom)
+                            }
+                            VStack {
                                 VStack {
                                     Toggle("Animate Distance", isOn: $animateDistance.animation())
                                         .tint(.init(white: 0.75))
@@ -122,34 +123,36 @@ struct ContentView: View {
                                 Slider(value: $lineWidth, in: 0.1...10, step: 0.1)
                             }
                             .paddedStack()
-                            .padding(.vertical)
                             VStack {
-                                Toggle("Animate Rotation", isOn: $animateRotation.animation())
-                                    .tint(.init(white: 0.75))
-                            }
-                            .paddedStack()
-                            if animateRotation {
                                 VStack {
-                                    HStack {
-                                        Text("Rotation Amount")
-                                        Spacer()
-                                        Text("\(rotationAmount, format: .number.precision(.fractionLength(2)))")
+                                    Toggle("Animate Rotation", isOn: $animateRotation.animation())
+                                        .tint(.init(white: 0.75))
+                                }
+                                .paddedStack()
+                                if animateRotation {
+                                    VStack {
+                                        HStack {
+                                            Text("Rotation Amount")
+                                            Spacer()
+                                            Text("\(rotationAmount, format: .number.precision(.fractionLength(2)))")
+                                        }
+                                        Slider(value: $rotationAmount, in: -2.5...2.5, step: 0.01)
                                     }
-                                    Slider(value: $rotationAmount, in: -2.5...2.5, step: 0.01)
+                                    .paddedStack()
                                 }
-                                .paddedStack()
                             }
                             VStack {
-                                Toggle("Animate Color", isOn: $animateHue.animation())
-                                    .tint(.init(white: 0.75))
-                            }
-                            .paddedStack()
-                            .padding(.top)
-                            if !animateHue {
                                 VStack {
-                                    ColorPicker("Color", selection: $color)
+                                    Toggle("Animate Color", isOn: $animateHue.animation())
+                                        .tint(.init(white: 0.75))
                                 }
                                 .paddedStack()
+                                if !animateHue {
+                                    VStack {
+                                        ColorPicker("Color", selection: $color)
+                                    }
+                                    .paddedStack()
+                                }
                             }
                             VStack {
                                 HStack {
@@ -160,7 +163,6 @@ struct ContentView: View {
                                 Slider(value: $scale, in: 0.1...5, step: 0.1)
                             }
                             .paddedStack()
-                            .padding(.top)
                         }
                         .padding(.top)
                     }
