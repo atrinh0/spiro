@@ -26,167 +26,10 @@ struct ContentView: View {
 
     @State private var scale = 1.0
 
-    let timer = Timer.publish(every: 0.01, on: .main, in: .common).autoconnect()
+    private let timer = Timer.publish(every: 0.01, on: .main, in: .common).autoconnect()
 
     private var graphColor: Color {
         animateHue ? Color(hue: hue, saturation: 1, brightness: 1) : color
-    }
-    
-    private func setDefault() {
-        innerRadius = 125.0
-        outerRadius = 70.0
-        
-        lineWidth = 1.5
-        
-        distance = 25.0
-        distanceIncrementing = false
-        animateDistance = true
-        animateDistanceSpeed = 0.5
-        minimumDistance = 1.0
-
-        animateRotation = true
-        rotationAmount = 0.2
-        
-        showingOptions = false
-        
-        hue = 0.0
-        hueIncrementing = true
-        animateHue = false
-        
-        color = Color.white
-        
-        scale = 1.0
-    }
-
-    private func setSpikyBall() {
-        innerRadius = 137.0
-        outerRadius = 1.0
-        
-        lineWidth = 0.5
-        
-        distance = 133.0
-        distanceIncrementing = false
-        animateDistance = true
-        animateDistanceSpeed = 0.2
-        minimumDistance = 133.0
-        
-        animateRotation = true
-        rotationAmount = -0.15
-        
-        showingOptions = false
-        
-        hue = 0.0
-        hueIncrementing = true
-        animateHue = false
-        
-        color = Color.white
-        
-        scale = 1.0
-    }
-    
-    private func setNucleus() {
-        innerRadius = 144.0
-        outerRadius = 1.0
-        
-        lineWidth = 0.1
-        
-        distance = 144.0
-        distanceIncrementing = false
-        animateDistance = true
-        animateDistanceSpeed = 0.2
-        minimumDistance = 144.0
-        
-        animateRotation = true
-        rotationAmount = 0.01
-        
-        showingOptions = false
-        
-        hue = 0.0
-        hueIncrementing = true
-        animateHue = false
-        
-        color = Color.white
-        
-        scale = 2.0
-    }
-    
-    private func setHeart() {
-        innerRadius = 65.0
-        outerRadius = 130.0
-        
-        lineWidth = 10.0
-        
-        distance = 100.0
-        distanceIncrementing = false
-        animateDistance = true
-        animateDistanceSpeed = 0.4
-        minimumDistance = 133.0
-        
-        rotation = -90
-        animateRotation = false
-        rotationAmount = 0.01
-        
-        showingOptions = false
-        
-        hue = 0.0
-        hueIncrementing = true
-        animateHue = false
-        
-        color = Color(hue: 0, saturation: 1, brightness: 1)
-        
-        scale = 1.0
-    }
-    
-    private func setStar() {
-        innerRadius = 110.0
-        outerRadius = 66.0
-        
-        lineWidth = 5.0
-        
-        distance = 100.0
-        distanceIncrementing = false
-        animateDistance = true
-        animateDistanceSpeed = 0.5
-        minimumDistance = 100.0
-        
-        animateRotation = true
-        rotationAmount = 1.0
-        
-        showingOptions = false
-        
-        hue = 0.0
-        hueIncrementing = true
-        animateHue = true
-        
-        color = Color.white
-        
-        scale = 1.0
-    }
-    
-    private func setCherryBlossom() {
-        innerRadius = 50.0
-        outerRadius = 120.0
-        
-        lineWidth = 3.0
-        
-        distance = 120.0
-        distanceIncrementing = false
-        animateDistance = false
-        animateDistanceSpeed = 0.5
-        minimumDistance = 1.0
-        
-        animateRotation = true
-        rotationAmount = 0.25
-        
-        showingOptions = false
-        
-        hue = 0.0
-        hueIncrementing = true
-        animateHue = false
-        
-        color = Color(red: 1.0, green: 183.0/255.0, blue: 197.0/255.0)
-        
-        scale = 1.5
     }
     
     var body: some View {
@@ -412,7 +255,7 @@ struct ContentView: View {
                         .padding()
                     }
                     Button {
-                        if let url = URL(string: "https://www.hackingwithswift.com/books/ios-swiftui/creating-a-spirograph-with-swiftui"),
+                        if let url = URL(string: "https://github.com/atrinh0/spiro"),
                            UIApplication.shared.canOpenURL(url) {
                             UIApplication.shared.open(url, options: [:])
                         }
@@ -477,5 +320,166 @@ struct ContentView: View {
                 }
             }
         }
+    }
+}
+
+// MARK: - Presets
+
+extension ContentView {
+    private func setDefault() {
+        innerRadius = 125.0
+        outerRadius = 70.0
+
+        lineWidth = 1.5
+
+        distance = 25.0
+        distanceIncrementing = false
+        animateDistance = true
+        animateDistanceSpeed = 0.5
+        minimumDistance = 1.0
+
+        animateRotation = true
+        rotationAmount = 0.2
+
+        showingOptions = false
+
+        hue = 0.0
+        hueIncrementing = true
+        animateHue = false
+
+        color = Color.white
+
+        scale = 1.0
+    }
+
+    private func setSpikyBall() {
+        innerRadius = 137.0
+        outerRadius = 1.0
+
+        lineWidth = 0.5
+
+        distance = 133.0
+        distanceIncrementing = false
+        animateDistance = true
+        animateDistanceSpeed = 0.2
+        minimumDistance = 133.0
+
+        animateRotation = true
+        rotationAmount = -0.15
+
+        showingOptions = false
+
+        hue = 0.0
+        hueIncrementing = true
+        animateHue = false
+
+        color = Color.white
+
+        scale = 1.0
+    }
+
+    private func setStar() {
+        innerRadius = 110.0
+        outerRadius = 66.0
+
+        lineWidth = 5.0
+
+        distance = 100.0
+        distanceIncrementing = false
+        animateDistance = true
+        animateDistanceSpeed = 0.5
+        minimumDistance = 100.0
+
+        animateRotation = true
+        rotationAmount = 1.0
+
+        showingOptions = false
+
+        hue = 0.0
+        hueIncrementing = true
+        animateHue = true
+
+        color = Color.white
+
+        scale = 1.0
+    }
+
+    private func setNucleus() {
+        innerRadius = 144.0
+        outerRadius = 1.0
+
+        lineWidth = 0.1
+
+        distance = 144.0
+        distanceIncrementing = false
+        animateDistance = true
+        animateDistanceSpeed = 0.2
+        minimumDistance = 144.0
+
+        animateRotation = true
+        rotationAmount = 0.01
+
+        showingOptions = false
+
+        hue = 0.0
+        hueIncrementing = true
+        animateHue = false
+
+        color = Color.white
+
+        scale = 2.0
+    }
+
+    private func setHeart() {
+        innerRadius = 65.0
+        outerRadius = 130.0
+
+        lineWidth = 10.0
+
+        distance = 100.0
+        distanceIncrementing = false
+        animateDistance = true
+        animateDistanceSpeed = 0.4
+        minimumDistance = 133.0
+
+        rotation = -90
+        animateRotation = false
+        rotationAmount = 0.01
+
+        showingOptions = false
+
+        hue = 0.0
+        hueIncrementing = true
+        animateHue = false
+
+        color = Color(hue: 0, saturation: 1, brightness: 1)
+
+        scale = 1.0
+    }
+
+    private func setCherryBlossom() {
+        innerRadius = 50.0
+        outerRadius = 120.0
+
+        lineWidth = 3.0
+
+        distance = 120.0
+        distanceIncrementing = false
+        animateDistance = false
+        animateDistanceSpeed = 0.5
+        minimumDistance = 1.0
+
+        animateRotation = true
+        rotationAmount = 0.25
+
+        showingOptions = false
+
+        hue = 0.0
+        hueIncrementing = true
+        animateHue = false
+
+        color = Color(red: 1.0, green: 183.0/255.0, blue: 197.0/255.0)
+
+        scale = 1.5
     }
 }
