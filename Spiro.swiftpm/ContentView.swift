@@ -61,9 +61,6 @@ struct ContentView: View {
             }
         }
         .background(Color.black)
-        .onAppear {
-            animateRotation = true
-        }
         .onReceive(timer) { _ in
             animationStep()
         }
@@ -484,5 +481,32 @@ extension ContentView {
         color = Color(red: 1.0, green: 183.0/255.0, blue: 197.0/255.0)
 
         scale = 1.5
+    }
+
+    private func setAppIcon() {
+        innerRadius = 50.0
+        outerRadius = 110.0
+
+        lineWidth = 5.0
+
+        distance = 90.0
+        distanceIncrementing = false
+        animateDistance = false
+        animateDistanceSpeed = 0.5
+        minimumDistance = 1.0
+
+        rotation = 36.0 - 90
+        animateRotation = false
+        rotationAmount = 0.2
+
+        showingOptions = false
+
+        hue = 0.0
+        hueIncrementing = true
+        animateHue = false
+
+        color = Color.white
+
+        scale = 3.0
     }
 }
