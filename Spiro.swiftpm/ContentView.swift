@@ -55,214 +55,9 @@ struct ContentView: View {
             VStack {
                 Spacer()
                 if showingOptions {
-                    ScrollView {
-                        VStack(spacing: 30) {
-                            VStack {
-                                VStack {
-                                    HStack {
-                                        Text("Inner Radius")
-                                        Spacer()
-                                        Text("\(Int(innerRadius))")
-                                    }
-                                    Slider(value: $innerRadius, in: 1...150, step: 1)
-                                }
-                                .paddedStack()
-                                VStack {
-                                    HStack {
-                                        Text("Outer Radius")
-                                        Spacer()
-                                        Text("\(Int(outerRadius))")
-                                    }
-                                    Slider(value: $outerRadius, in: 1...150, step: 1)
-                                }
-                                .paddedStack()
-                            }
-                            VStack {
-                                VStack {
-                                    Toggle("Animate Distance", isOn: $animateDistance.animation())
-                                        .tint(.init(white: 0.75))
-                                }
-                                .paddedStack()
-                                if !animateDistance {
-                                    VStack {
-                                        HStack {
-                                            Text("Distance")
-                                            Spacer()
-                                            Text("\(Int(distance))")
-                                        }
-                                        Slider(value: $distance, in: 1...150, step: 1)
-                                    }
-                                    .paddedStack()
-                                } else {
-                                    VStack {
-                                        HStack {
-                                            Text("Distance Animation Amount")
-                                            Spacer()
-                                            Text("\(animateDistanceSpeed, format: .number.precision(.fractionLength(1)))")
-                                        }
-                                        Slider(value: $animateDistanceSpeed, in: 0.2...5.0, step: 0.1)
-                                    }
-                                    .paddedStack()
-                                    VStack {
-                                        HStack {
-                                            Text("Distance Animation Minimum Value")
-                                            Spacer()
-                                            Text("\(Int(minimumDistance))")
-                                        }
-                                        Slider(value: $minimumDistance, in: 1...149, step: 1)
-                                    }
-                                    .paddedStack()
-                                }
-                            }
-                            VStack {
-                                HStack {
-                                    Text("Line Width")
-                                    Spacer()
-                                    Text("\(lineWidth, format: .number.precision(.fractionLength(1)))")
-                                }
-                                Slider(value: $lineWidth, in: 0.1...10, step: 0.1)
-                            }
-                            .paddedStack()
-                            VStack {
-                                VStack {
-                                    Toggle("Animate Rotation", isOn: $animateRotation.animation())
-                                        .tint(.init(white: 0.75))
-                                }
-                                .paddedStack()
-                                if animateRotation {
-                                    VStack {
-                                        HStack {
-                                            Text("Rotation Amount")
-                                            Spacer()
-                                            Text("\(rotationAmount, format: .number.precision(.fractionLength(2)))")
-                                        }
-                                        Slider(value: $rotationAmount, in: -2.5...2.5, step: 0.01)
-                                    }
-                                    .paddedStack()
-                                }
-                            }
-                            VStack {
-                                VStack {
-                                    Toggle("Animate Color", isOn: $animateHue.animation())
-                                        .tint(.init(white: 0.75))
-                                }
-                                .paddedStack()
-                                if !animateHue {
-                                    VStack {
-                                        ColorPicker("Color", selection: $color)
-                                    }
-                                    .paddedStack()
-                                }
-                            }
-                            VStack {
-                                HStack {
-                                    Text("Scale")
-                                    Spacer()
-                                    Text("\(scale, format: .number.precision(.fractionLength(1)))")
-                                }
-                                Slider(value: $scale, in: 0.1...5, step: 0.1)
-                            }
-                            .paddedStack()
-                        }
-                        .padding(.top)
-                    }
-                    .font(.body.bold())
+                    settingsScrollView
                 }
-                HStack {
-                    Menu {
-                        Button {
-                            withAnimation {
-                                setDefault()
-                            }
-                        } label: {
-                            Text("Simple Spirograph")
-                        }
-                        Button {
-                            withAnimation {
-                                setSpikyBall()
-                            }
-                        } label: {
-                            Text("Spiky Ball")
-                        }
-                        Button {
-                            withAnimation {
-                                setStar()
-                            }
-                        } label: {
-                            Text("Star")
-                        }
-                        Button {
-                            withAnimation {
-                                setNucleus()
-                            }
-                        } label: {
-                            Text("Nucleus")
-                        }
-                        Button {
-                            withAnimation {
-                                setHeart()
-                            }
-                        } label: {
-                            Text("Heart")
-                        }
-                        Button {
-                            withAnimation {
-                                setCherryBlossom()
-                            }
-                        } label: {
-                            Text("Cherry Blossom")
-                        }
-                    } label: {
-                        ZStack {
-                            Image(systemName: "seal")
-                                .foregroundColor(showingOptions ? .white : .white.opacity(0))
-                                .rotationEffect(.degrees(rotation))
-                                .scaleEffect(showingOptions ? 1 : 0.1)
-                                .offset(x: showingOptions ? 0 : 50, y: 0)
-                                .animation(Animation.spring(response: 0.35, dampingFraction: 0.35, blendDuration: 1).delay(showingOptions ? Double.random(in: 0.05...0.2) : 0), value: showingOptions)
-                        }
-                        .font(.title.bold())
-                        .padding()
-                    }
-                    .allowsHitTesting(showingOptions)
-                    Button {
-                        withAnimation {
-                            showingOptions.toggle()
-                        }
-                    } label: {
-                        ZStack {
-                            Image(systemName: "chevron.up")
-                                .foregroundColor(showingOptions ? .white.opacity(0) : .white.opacity(0.25))
-                                .offset(x: 0, y: showingOptions ? -50 : 0)
-                                .animation(showingOptions ? .easeOut :
-                                            Animation.spring(response: 0.35, dampingFraction: 0.35, blendDuration: 1), value: showingOptions)
-                            Image(systemName: "xmark")
-                                .foregroundColor(showingOptions ? .white : .white.opacity(0))
-                                .rotationEffect(.degrees(showingOptions ? 0 : 180))
-                                .scaleEffect(showingOptions ? 1 : 0.1)
-                                .animation(Animation.spring(response: 0.35, dampingFraction: 0.35, blendDuration: 1), value: showingOptions)
-                        }
-                        .font(.title.bold())
-                        .padding()
-                    }
-                    Button {
-                        if let url = URL(string: "https://github.com/atrinh0/spiro"),
-                           UIApplication.shared.canOpenURL(url) {
-                            UIApplication.shared.open(url, options: [:])
-                        }
-                    } label: {
-                        ZStack {
-                            Image(systemName: "chevron.left.forwardslash.chevron.right")
-                                .foregroundColor(showingOptions ? .white : .white.opacity(0))
-                                .scaleEffect(showingOptions ? 1 : 0.1)
-                                .offset(x: showingOptions ? 0 : -50, y: 0)
-                                .animation(Animation.spring(response: 0.35, dampingFraction: 0.35, blendDuration: 1).delay(showingOptions ? Double.random(in: 0.05...0.2) : 0), value: showingOptions)
-                        }
-                        .font(.title.bold())
-                        .padding()
-                    }
-                    .allowsHitTesting(showingOptions)
-                }
+                buttons
             }
         }
         .background(Color.black)
@@ -270,45 +65,262 @@ struct ContentView: View {
             animateRotation = true
         }
         .onReceive(timer) { _ in
-            if animateDistance {
-                if distanceIncrementing {
-                    distance += animateDistanceSpeed
-                    if distance > 150 {
-                        distance = 150
-                        distanceIncrementing = false
+            animationStep()
+        }
+    }
+
+    private var settingsScrollView: some View {
+        ScrollView {
+            VStack(spacing: 30) {
+                VStack {
+                    VStack {
+                        HStack {
+                            Text("Inner Radius")
+                            Spacer()
+                            Text("\(Int(innerRadius))")
+                        }
+                        Slider(value: $innerRadius, in: 1...150, step: 1)
                     }
-                } else {
-                    distance -= animateDistanceSpeed
-                    if distance < minimumDistance {
-                        distance = minimumDistance
-                        distanceIncrementing = true
+                    .paddedStack()
+                    VStack {
+                        HStack {
+                            Text("Outer Radius")
+                            Spacer()
+                            Text("\(Int(outerRadius))")
+                        }
+                        Slider(value: $outerRadius, in: 1...150, step: 1)
                     }
+                    .paddedStack()
+                }
+                VStack {
+                    VStack {
+                        Toggle("Animate Distance", isOn: $animateDistance.animation())
+                            .tint(.init(white: 0.75))
+                    }
+                    .paddedStack()
+                    if !animateDistance {
+                        VStack {
+                            HStack {
+                                Text("Distance")
+                                Spacer()
+                                Text("\(Int(distance))")
+                            }
+                            Slider(value: $distance, in: 1...150, step: 1)
+                        }
+                        .paddedStack()
+                    } else {
+                        VStack {
+                            HStack {
+                                Text("Distance Animation Amount")
+                                Spacer()
+                                Text("\(animateDistanceSpeed, format: .number.precision(.fractionLength(1)))")
+                            }
+                            Slider(value: $animateDistanceSpeed, in: 0.2...5.0, step: 0.1)
+                        }
+                        .paddedStack()
+                        VStack {
+                            HStack {
+                                Text("Distance Animation Minimum Value")
+                                Spacer()
+                                Text("\(Int(minimumDistance))")
+                            }
+                            Slider(value: $minimumDistance, in: 1...149, step: 1)
+                        }
+                        .paddedStack()
+                    }
+                }
+                VStack {
+                    HStack {
+                        Text("Line Width")
+                        Spacer()
+                        Text("\(lineWidth, format: .number.precision(.fractionLength(1)))")
+                    }
+                    Slider(value: $lineWidth, in: 0.1...10, step: 0.1)
+                }
+                .paddedStack()
+                VStack {
+                    VStack {
+                        Toggle("Animate Rotation", isOn: $animateRotation.animation())
+                            .tint(.init(white: 0.75))
+                    }
+                    .paddedStack()
+                    if animateRotation {
+                        VStack {
+                            HStack {
+                                Text("Rotation Amount")
+                                Spacer()
+                                Text("\(rotationAmount, format: .number.precision(.fractionLength(2)))")
+                            }
+                            Slider(value: $rotationAmount, in: -2.5...2.5, step: 0.01)
+                        }
+                        .paddedStack()
+                    }
+                }
+                VStack {
+                    VStack {
+                        Toggle("Animate Color", isOn: $animateHue.animation())
+                            .tint(.init(white: 0.75))
+                    }
+                    .paddedStack()
+                    if !animateHue {
+                        VStack {
+                            ColorPicker("Color", selection: $color)
+                        }
+                        .paddedStack()
+                    }
+                }
+                VStack {
+                    HStack {
+                        Text("Scale")
+                        Spacer()
+                        Text("\(scale, format: .number.precision(.fractionLength(1)))")
+                    }
+                    Slider(value: $scale, in: 0.1...5, step: 0.1)
+                }
+                .paddedStack()
+            }
+            .padding(.top)
+        }
+        .font(.body.bold())
+    }
+
+    private var buttons: some View {
+        HStack {
+            Menu {
+                Button {
+                    withAnimation {
+                        setDefault()
+                    }
+                } label: {
+                    Text("Simple Spirograph")
+                }
+                Button {
+                    withAnimation {
+                        setSpikyBall()
+                    }
+                } label: {
+                    Text("Spiky Ball")
+                }
+                Button {
+                    withAnimation {
+                        setStar()
+                    }
+                } label: {
+                    Text("Star")
+                }
+                Button {
+                    withAnimation {
+                        setNucleus()
+                    }
+                } label: {
+                    Text("Nucleus")
+                }
+                Button {
+                    withAnimation {
+                        setHeart()
+                    }
+                } label: {
+                    Text("Heart")
+                }
+                Button {
+                    withAnimation {
+                        setCherryBlossom()
+                    }
+                } label: {
+                    Text("Cherry Blossom")
+                }
+            } label: {
+                ZStack {
+                    Image(systemName: "seal")
+                        .foregroundColor(showingOptions ? .white : .white.opacity(0))
+                        .rotationEffect(.degrees(rotation))
+                        .scaleEffect(showingOptions ? 1 : 0.1)
+                        .offset(x: showingOptions ? 0 : 50, y: 0)
+                        .animation(Animation.spring(response: 0.35, dampingFraction: 0.35, blendDuration: 1).delay(showingOptions ? Double.random(in: 0.05...0.2) : 0), value: showingOptions)
+                }
+                .font(.title.bold())
+                .padding()
+            }
+            .allowsHitTesting(showingOptions)
+            Button {
+                withAnimation {
+                    showingOptions.toggle()
+                }
+            } label: {
+                ZStack {
+                    Image(systemName: "chevron.up")
+                        .foregroundColor(showingOptions ? .white.opacity(0) : .white.opacity(0.25))
+                        .offset(x: 0, y: showingOptions ? -50 : 0)
+                        .animation(showingOptions ? .easeOut :
+                                    Animation.spring(response: 0.35, dampingFraction: 0.35, blendDuration: 1), value: showingOptions)
+                    Image(systemName: "xmark")
+                        .foregroundColor(showingOptions ? .white : .white.opacity(0))
+                        .rotationEffect(.degrees(showingOptions ? 0 : 180))
+                        .scaleEffect(showingOptions ? 1 : 0.1)
+                        .animation(Animation.spring(response: 0.35, dampingFraction: 0.35, blendDuration: 1), value: showingOptions)
+                }
+                .font(.title.bold())
+                .padding()
+            }
+            Button {
+                if let url = URL(string: "https://github.com/atrinh0/spiro"),
+                   UIApplication.shared.canOpenURL(url) {
+                    UIApplication.shared.open(url, options: [:])
+                }
+            } label: {
+                ZStack {
+                    Image(systemName: "chevron.left.forwardslash.chevron.right")
+                        .foregroundColor(showingOptions ? .white : .white.opacity(0))
+                        .scaleEffect(showingOptions ? 1 : 0.1)
+                        .offset(x: showingOptions ? 0 : -50, y: 0)
+                        .animation(Animation.spring(response: 0.35, dampingFraction: 0.35, blendDuration: 1).delay(showingOptions ? Double.random(in: 0.05...0.2) : 0), value: showingOptions)
+                }
+                .font(.title.bold())
+                .padding()
+            }
+            .allowsHitTesting(showingOptions)
+        }
+    }
+
+    private func animationStep() {
+        if animateDistance {
+            if distanceIncrementing {
+                distance += animateDistanceSpeed
+                if distance > 150 {
+                    distance = 150
+                    distanceIncrementing = false
+                }
+            } else {
+                distance -= animateDistanceSpeed
+                if distance < minimumDistance {
+                    distance = minimumDistance
+                    distanceIncrementing = true
                 }
             }
+        }
 
-            if animateHue {
-                if hueIncrementing {
-                    hue += 0.001
-                    if hue > 1 {
-                        hue = 1
-                        hueIncrementing = false
-                    }
-                } else {
-                    hue -= 0.001
-                    if hue < 0 {
-                        hue = 0
-                        hueIncrementing = true
-                    }
+        if animateHue {
+            if hueIncrementing {
+                hue += 0.001
+                if hue > 1 {
+                    hue = 1
+                    hueIncrementing = false
+                }
+            } else {
+                hue -= 0.001
+                if hue < 0 {
+                    hue = 0
+                    hueIncrementing = true
                 }
             }
+        }
 
-            if animateRotation {
-                rotation += rotationAmount
-                if rotation > 360 {
-                    rotation = 0
-                } else if rotation < -360 {
-                    rotation = 0
-                }
+        if animateRotation {
+            rotation += rotationAmount
+            if rotation > 360 {
+                rotation = 0
+            } else if rotation < -360 {
+                rotation = 0
             }
         }
     }
