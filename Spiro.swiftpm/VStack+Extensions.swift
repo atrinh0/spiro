@@ -1,10 +1,3 @@
-//
-//  VStack+Extensions.swift
-//  Spiro
-//
-//  Created by An Trinh on 27/12/2021.
-//
-
 import SwiftUI
 
 extension VStack {
