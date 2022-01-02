@@ -3,31 +3,31 @@ import SwiftUI
 struct ContentView: View {
     @State private var innerRadius = 125.0
     @State private var outerRadius = 70.0
-
+    
     @State private var lineWidth = 1.5
-
+    
     @State private var distance = 25.0
     @State private var distanceIncrementing = false
     @State private var animateDistance = true
     @State private var animateDistanceSpeed = 0.5
     @State private var minimumDistance = 1.0
-
+    
     @State private var rotation = 0.0
     @State private var animateRotation = true
     @State private var rotationAmount = 0.2
-
+    
     @State private var showingOptions = false
-
+    
     @State private var hue = 0.0
     @State private var hueIncrementing = true
     @State private var animateHue = false
-
+    
     @State private var color = Color.white
-
+    
     @State private var scale = 1.0
-
+    
     private let timer = Timer.publish(every: 0.01, on: .main, in: .common).autoconnect()
-
+    
     private var graphColor: Color {
         animateHue ? Color(hue: hue, saturation: 1, brightness: 1) : color
     }
@@ -65,7 +65,7 @@ struct ContentView: View {
             animationStep()
         }
     }
-
+    
     private var settingsScrollView: some View {
         ScrollView {
             VStack(spacing: 30) {
@@ -180,7 +180,7 @@ struct ContentView: View {
         }
         .font(.body.bold())
     }
-
+    
     private var buttons: some View {
         HStack {
             Menu {
@@ -278,7 +278,7 @@ struct ContentView: View {
             .allowsHitTesting(showingOptions)
         }
     }
-
+    
     private func animationStep() {
         if animateDistance {
             if distanceIncrementing {
@@ -295,7 +295,7 @@ struct ContentView: View {
                 }
             }
         }
-
+        
         if animateHue {
             if hueIncrementing {
                 hue += 0.001
@@ -311,7 +311,7 @@ struct ContentView: View {
                 }
             }
         }
-
+        
         if animateRotation {
             rotation += rotationAmount
             if rotation > 360 {
@@ -329,184 +329,184 @@ extension ContentView {
     private func setDefault() {
         innerRadius = 125.0
         outerRadius = 70.0
-
+        
         lineWidth = 1.5
-
+        
         distance = 25.0
         distanceIncrementing = false
         animateDistance = true
         animateDistanceSpeed = 0.5
         minimumDistance = 1.0
-
+        
         animateRotation = true
         rotationAmount = 0.2
-
+        
         showingOptions = false
-
+        
         hue = 0.0
         hueIncrementing = true
         animateHue = false
-
+        
         color = Color.white
-
+        
         scale = 1.0
     }
-
+    
     private func setSpikyBall() {
         innerRadius = 137.0
         outerRadius = 1.0
-
+        
         lineWidth = 0.5
-
+        
         distance = 133.0
         distanceIncrementing = false
         animateDistance = true
         animateDistanceSpeed = 0.2
         minimumDistance = 133.0
-
+        
         animateRotation = true
         rotationAmount = -0.15
-
+        
         showingOptions = false
-
+        
         hue = 0.0
         hueIncrementing = true
         animateHue = false
-
+        
         color = Color.white
-
+        
         scale = 1.0
     }
-
+    
     private func setStar() {
         innerRadius = 110.0
         outerRadius = 66.0
-
+        
         lineWidth = 5.0
-
+        
         distance = 100.0
         distanceIncrementing = false
         animateDistance = true
         animateDistanceSpeed = 0.5
         minimumDistance = 100.0
-
+        
         animateRotation = true
         rotationAmount = 1.0
-
+        
         showingOptions = false
-
+        
         hue = 0.0
         hueIncrementing = true
         animateHue = true
-
+        
         color = Color.white
-
+        
         scale = 1.0
     }
-
+    
     private func setNucleus() {
         innerRadius = 144.0
         outerRadius = 1.0
-
+        
         lineWidth = 0.1
-
+        
         distance = 144.0
         distanceIncrementing = false
         animateDistance = true
         animateDistanceSpeed = 0.2
         minimumDistance = 144.0
-
+        
         animateRotation = true
         rotationAmount = 0.01
-
+        
         showingOptions = false
-
+        
         hue = 0.0
         hueIncrementing = true
         animateHue = false
-
+        
         color = Color.white
-
+        
         scale = 2.0
     }
-
+    
     private func setHeart() {
         innerRadius = 65.0
         outerRadius = 130.0
-
+        
         lineWidth = 10.0
-
+        
         distance = 100.0
         distanceIncrementing = false
         animateDistance = true
         animateDistanceSpeed = 0.4
         minimumDistance = 133.0
-
+        
         rotation = -90
         animateRotation = false
         rotationAmount = 0.01
-
+        
         showingOptions = false
-
+        
         hue = 0.0
         hueIncrementing = true
         animateHue = false
-
+        
         color = Color(hue: 0, saturation: 1, brightness: 1)
-
+        
         scale = 1.0
     }
-
+    
     private func setCherryBlossom() {
         innerRadius = 50.0
         outerRadius = 120.0
-
+        
         lineWidth = 3.0
-
+        
         distance = 120.0
         distanceIncrementing = false
         animateDistance = false
         animateDistanceSpeed = 0.5
         minimumDistance = 1.0
-
+        
         animateRotation = true
         rotationAmount = 0.25
-
+        
         showingOptions = false
-
+        
         hue = 0.0
         hueIncrementing = true
         animateHue = false
-
+        
         color = Color(red: 1.0, green: 183.0/255.0, blue: 197.0/255.0)
-
+        
         scale = 1.5
     }
-
+    
     private func setAppIcon() {
         innerRadius = 50.0
         outerRadius = 110.0
-
+        
         lineWidth = 5.0
-
+        
         distance = 90.0
         distanceIncrementing = false
         animateDistance = false
         animateDistanceSpeed = 0.5
         minimumDistance = 1.0
-
+        
         rotation = 36.0 - 90
         animateRotation = false
         rotationAmount = 0.2
-
+        
         showingOptions = false
-
+        
         hue = 0.0
         hueIncrementing = true
         animateHue = false
-
+        
         color = Color.white
-
+        
         scale = 3.0
     }
 }
