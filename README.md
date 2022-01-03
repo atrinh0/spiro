@@ -121,15 +121,21 @@ And it was submitted successfully this time. 💪🏻
 
 ### 🤔 Development on Xcode
 
+<img src="images/xcodeproj.png" width="640">
 
+By opening the project on Xcode, we can see that it is vastly simplified compared to ordinary Xcode projects. (no deployment target, launch screen, build number, build settings, build phases, etc.)
 
 ### 🤓 Minimum deployment target
 
+After submitting to App Store Connect, we can inspect the build metadata and note the minimum deployment targets.
 
+<img src="images/requirements.png" width="640">
 
 ### ☁️ Xcode Cloud?
 
+<img src="images/cloud.png" width="640">
 
+We can also note that Xcode Cloud does not support this project type yet.
 
 ## 🚀 What is next?
 
