@@ -64,7 +64,30 @@ Here are some things I've learnt along the way.
 
 ### ☁️ iCloud vs git
 
+. | iCloud syncing | git
+-- | -- | --
+Pro | All automated and integrated into macOS and iPadOS | Version control, history, branch workflow, multiple contributors, etc
+Con | No version control, no visual way to resolve conflicts | Requires 3rd party app (with paid subscription) to manually use git, or manually sharing project file back to macOS to manually commit, etc
 
+After creating a new project in Swift Playgrounds 4 on the iPad, I noticed that is used iCloud drive to sync to the macOS. This allows us to work across both iPadOS and macOS on the same project.
+
+However there is no version control, history, branching all the good things that come with git that are used on a daily basis for professional apps.
+
+<img src="images/conflict.png" width="640">
+
+This image shows an issue of resolving conflicts based purely on device and timestamp.
+
+After some investigation, I found this tweet https://twitter.com/WorkingCopyApp/status/1471231127264415744.
+
+[Working copy](https://apps.apple.com/us/app/working-copy/id896694807) is an app that allows git access with drag and drop support...
+
+<img src="images/pull.png" width="640">
+
+...so we can drag the project file from git to Playgrounds to when we want to work on the iPad...
+
+<img src="images/commit.png" width="640">
+
+...and drag it back into working copy to commit any changes back to git.
 
 ### 🙊 Swift Playgrounds 4 limitations
 
