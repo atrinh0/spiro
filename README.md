@@ -15,6 +15,8 @@ Swift Playgrounds 4 app created on the iPad^.
 
 <p><a href="https://apps.apple.com/us/app/id1602980337"><img src="web/images/download.svg"></a></p>
 
+<img src="images/demo.gif" width="320">
+
 ### 🏙 Screenshots
 
 <img src="web/images/hero1.png" width="320">&nbsp;&nbsp;&nbsp;<img src="web/images/hero2.png" width="320">
