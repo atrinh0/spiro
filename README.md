@@ -31,10 +31,15 @@ I wanted to create an app to explore the development and deployment experience o
 
 To share learnings. 
 
-To show how powerful/easy SwiftUI can be to create an app.
+To show how powerful/easy SwiftUI can be to create an app, especially now with Swift Playgrounds 4.
+
+Most of the code was obtained from [Creating a spirograph with SwiftUI](https://www.hackingwithswift.com/books/ios-swiftui/creating-a-spirograph-with-swiftui), so it makes sense to keep things transparent/open and hope it can help someone else out there.
 
 ## 🙇🏻 Credits
 
+Huge sincere thanks goes to [Paul Hudson](https://twitter.com/twostraws) and his [100 days of SwiftUI](https://www.hackingwithswift.com/100/swiftui) series where I have learnt most of my SwiftUI knowledge. 
+
+The code to draw these lovely hypotrochoids was obtained from
 https://www.hackingwithswift.com/books/ios-swiftui/creating-a-spirograph-with-swiftui
 
 ## 🧑🏻‍💻 Getting Started
