@@ -33,7 +33,7 @@ To share learnings.
 
 To show how powerful/easy SwiftUI can be to create an app, especially now with Swift Playgrounds 4.
 
-Most of the code was obtained from [Creating a spirograph with SwiftUI](https://www.hackingwithswift.com/books/ios-swiftui/creating-a-spirograph-with-swiftui), so it makes sense to keep things transparent/open and hope it can help someone else out there.
+Most of the code was obtained from [Creating a spirograph with SwiftUI](https://www.hackingwithswift.com/books/ios-swiftui/creating-a-spirograph-with-swiftui), so it makes sense to keep things transparent/open and hopes that it can help someone else out there.
 
 ## 🙇🏻 Credits
 
