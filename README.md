@@ -2,31 +2,34 @@
 
 <p align="center">
     <img src="https://img.shields.io/badge/iOS-15.2+-blue.svg" />
+    <img src="https://img.shields.io/badge/Swift%20Playgrounds-4.0-red.svg" />
     <img src="https://img.shields.io/badge/Xcode-13.2.1+-brightgreen.svg" />
     <img src="https://img.shields.io/badge/Swift-5.5-orange.svg" />
-    <img src="https://img.shields.io/badge/Swift%20Playgrounds-4.0-red.svg" />
 </p>
 
 # Spiro
 
 Swift Playgrounds 4 app created on the iPad^.
 
-> ^ macOS and Xcode also used as explained below.
+> ^ Xcode also used as explained below.
+
+<p><a href="https://apps.apple.com/us/app/id1602980337"><img src="web/images/download.svg"></a></p>
 
 ### 🏙 Screenshots
 
-<img src="web/images/hero1.png"> <img src="web/images/hero2.png">
+<img src="web/images/hero1.png" width="320">&nbsp;&nbsp;&nbsp;<img src="web/images/hero2.png" width="320">
 
 ### 🤔 What is Spiro?
 
 An interactive animating spirograph generator.
+
+I wanted to create an app to explore the development and deployment experience of Swift Playgrounds 4 on the iPad.
 
 ### 🧐 Why open source?
 
 To share learnings. 
 
 To show how powerful/easy SwiftUI can be to create an app.
-
 
 ## 🙇🏻 Credits
 
@@ -36,25 +39,47 @@ https://www.hackingwithswift.com/books/ios-swiftui/creating-a-spirograph-with-sw
 
 ### Swift Playgrounds 4 on iPad 
 
-Instructions to load `Spiro.swiftpm` from git into Swift Playgrounds 4 on the iPad.
+There are many different methods to get `Spiro.swiftpm` to run on Swift Playgrounds 4 on the iPad.
 
-### Xcode on macOS
+Method | Steps
+-- | --
+Share from macOS via AirDrop | Clone this repo, share the `Spiro.swiftpm` via AirDrop to your iPad, it will open on Swift Playgrounds 4 on the iPad.
+Share using iCloud Drive | Clone this repo, copy `Spiro.swiftpm` into your iCloud Drive, on the iPad open Swift Playgrounds 4, tap on `Locations` and locate it within iCloud Drive.
+Working copy app (using just the iPad) | Download https://apps.apple.com/us/app/working-copy/id896694807, Clone this repo within the working copy app, Open Swift Playgrounds 4 and working copy side by side using multitasking, Drag `Spiro.swiftpm` from working copy into "My Playgrounds".
+
+### 💻 Xcode on macOS
 
 Open `Spiro.swiftpm` via Xcode. Playgrounds 4 app running on macOS cannot open the project.
 
-## Learnings
+## 🧑🏻‍🏫 Learnings
 
-### iCloud vs git
+Here are some things I've learnt along the way.
 
-### Swift Playgrounds 4 limitations
+### ☁️ iCloud vs git
 
-### Submission issues
 
-### Development on Xcode
 
-### Minimum deployment target
+### 🙊 Swift Playgrounds 4 limitations
 
-## What is next?
+
+
+### 🥺 Submission issues
+
+
+
+### 🤔 Development on Xcode
+
+
+
+### 🤓 Minimum deployment target
+
+
+
+### ☁️ Xcode Cloud?
+
+
+
+## 🚀 What is next?
 
 Just some ideas to further improve this project.
 
