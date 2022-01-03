@@ -89,13 +89,35 @@ After some investigation, I found this tweet https://twitter.com/WorkingCopyApp/
 
 ...and drag it back into working copy to commit any changes back to git.
 
-### 🙊 Swift Playgrounds 4 limitations
-
-
-
 ### 🥺 Submission issues
 
+After upgrading Swift Playgrounds to 4 and testing the submission functionality, I was given this error.
 
+<img src="images/contract.png" width="640">
+
+Upon accepting the latest terms and agreements I tried again with the feature complete version of the project and was faced with this error.
+
+<img src="images/entityerror.png" width="640">
+
+I proceeded to create the app like any other app by creating an explicit `App ID` via the `Certificates, Identifiers & Profiles` on the Apple developer portal. I have also created the new app via App Store Connect selecting the bundle ID I have just created. Upon attempting to submit again, I was given this error.
+
+<img src="images/invalid.png" width="640">
+
+This did not seem right, after checking the team settings under App Settings, everything was correct so I decided to try again.
+
+<img src="images/success.png" width="640">
+
+It appears to be successful, however after a short while, an email was received.
+
+<img src="images/email.png" width="640">
+
+Upon inspecting the project on both Swift Playgrounds 4, and on Xcode, there was no such entitlement option (as Swift Playground 4 apps are simplified compared with normal Xcode projects files).
+
+It was at this point that I decided to use Xcode to submit the binary. 
+
+<img src="images/xcode.png" width="640">
+
+And it was submitted successfully this time. 💪🏻
 
 ### 🤔 Development on Xcode
 
