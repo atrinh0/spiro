@@ -91,6 +91,8 @@ After some investigation, I found this tweet https://twitter.com/WorkingCopyApp/
 
 ### 🥺 Submission issues
 
+> Issues have been reported to Apple: `FB9832713`
+
 After upgrading to Swift Playgrounds 4 and testing the submission functionality, I was given the following error.
 
 <img src="images/contract.png" width="640">
