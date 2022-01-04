@@ -1,5 +1,6 @@
 import SwiftUI
 
+// https://www.hackingwithswift.com/books/ios-swiftui/creating-a-spirograph-with-swiftui
 struct Spirograph: Shape {
     let innerRadius: Int
     let outerRadius: Int
