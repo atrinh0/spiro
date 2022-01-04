@@ -51,7 +51,7 @@ There are many different methods to get `Spiro.swiftpm` to run on Swift Playgrou
 Method | Steps
 -- | --
 Share from macOS via AirDrop | Clone this repo, share the `Spiro.swiftpm` via AirDrop to your iPad, it will open on Swift Playgrounds 4 on the iPad.
-Share using iCloud Drive | Clone this repo, copy `Spiro.swiftpm` into your iCloud Drive, on the iPad open Swift Playgrounds 4, tap on `Locations` and locate it within iCloud Drive.
+Share using iCloud Drive | Clone this repo, copy `Spiro.swiftpm` into your iCloud Drive, on the iPad open Swift Playgrounds 4, tap on `Locations` and locate `Spiro.swiftpm` within iCloud Drive.
 Working copy app (using just the iPad) | Download https://apps.apple.com/us/app/working-copy/id896694807, Clone this repo within the working copy app, Open Swift Playgrounds 4 and working copy side by side using multitasking, Drag `Spiro.swiftpm` from working copy into "My Playgrounds".
 
 ### 💻 Xcode on macOS
@@ -91,15 +91,15 @@ After some investigation, I found this tweet https://twitter.com/WorkingCopyApp/
 
 ### 🥺 Submission issues
 
-After upgrading Swift Playgrounds to 4 and testing the submission functionality, I was given this error.
+After upgrading to Swift Playgrounds 4 and testing the submission functionality, I was given the following error.
 
 <img src="images/contract.png" width="640">
 
-Upon accepting the latest terms and agreements I tried again with the feature complete version of the project and was faced with this error.
+Upon accepting the latest terms and agreements I tried again with the feature complete version of the project and was faced with the following error.
 
 <img src="images/entityerror.png" width="640">
 
-I proceeded to create the app like any other app by creating an explicit `App ID` via the `Certificates, Identifiers & Profiles` on the Apple developer portal. I have also created the new app via App Store Connect selecting the bundle ID I have just created. Upon attempting to submit again, I was given this error.
+I proceeded to create the app like any other app by creating an explicit `App ID` via the `Certificates, Identifiers & Profiles` on the Apple developer portal. I have also created the new app via App Store Connect selecting the bundle ID I have just created. Upon attempting to submit again, I was given the following error.
 
 <img src="images/invalid.png" width="640">
 
@@ -107,7 +107,7 @@ This did not seem right, after checking the team settings under App Settings, ev
 
 <img src="images/success.png" width="640">
 
-It appears to be successful, however after a short while, an email was received.
+It appeared to be successful, however after a short while, an email was received.
 
 <img src="images/email.png" width="640">
 
