@@ -51,7 +51,7 @@ There are many different methods to get `Spiro.swiftpm` to run on Swift Playgrou
 Method | Steps
 -- | --
 Share from macOS via AirDrop | Clone this repo, share the `Spiro.swiftpm` via AirDrop to your iPad, it will open on Swift Playgrounds 4 on the iPad.
-Share using iCloud Drive | Clone this repo, copy `Spiro.swiftpm` into your iCloud Drive, on the iPad open Swift Playgrounds 4, tap on `Locations` and locate it within iCloud Drive.
+Share using iCloud Drive | Clone this repo, copy `Spiro.swiftpm` into your iCloud Drive, on the iPad open Swift Playgrounds 4, tap on `Locations` and locate `Spiro.swiftpm` within iCloud Drive.
 Working copy app (using just the iPad) | Download https://apps.apple.com/us/app/working-copy/id896694807, Clone this repo within the working copy app, Open Swift Playgrounds 4 and working copy side by side using multitasking, Drag `Spiro.swiftpm` from working copy into "My Playgrounds".
 
 ### 💻 Xcode on macOS
