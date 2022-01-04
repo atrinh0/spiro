@@ -83,11 +83,11 @@ After some investigation, I found this tweet https://twitter.com/WorkingCopyApp/
 
 <img src="images/pull.png" width="640">
 
-...so we can drag the project file from git to Playgrounds to when we want to work on the iPad...
+...so we can drag the project file from `Working copy` to `Playgrounds` when we want to work on the iPad...
 
 <img src="images/commit.png" width="640">
 
-...and drag it back into working copy to commit any changes back to git.
+...and drag it back from `Playgrounds` to `Working copy` to commit any changes back to git.
 
 ### 🥺 Submission issues
 
